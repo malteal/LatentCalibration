@@ -1,0 +1,28 @@
+hydra:
+  run:
+    dir: ${path.save_path}
+
+defaults:
+  - _self_
+  - train: defaults.yaml
+  - data: defaults.yaml
+  - path: defaults.yaml
+  - eval: defaults.yaml
+  - model: icnn.yaml
+  # - model: n_icnn.yaml
+  - experiment: defaults.yaml
+
+device: cuda
+verbose: true
+model_name: icnn_GRL_testing_lr
+# remember save sig_path/bkg_path in the OT folder
+
+ckpt:
+  path: null
+  full_resume: False
+  # path: ${path.glob_model_path}/${data.dataname}/bb_latn_16_flow_n_icnn
+
+  new_config:
+    data:
+      maxevents: 2_000_000
+      valid_maxevents: 100_000

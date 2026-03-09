@@ -1,0 +1,7 @@
+{   "device" : "cpu",
+    "nonconvex_activation": "softplus",
+    "convex_activation": "softplus",
+    "nonconvex_layersizes": [1, 2 , 2 , 2 , 2 , 2 ],
+    "convex_layersizes": [3, 64 , 64 , 64 , 64 , 64, 1 ],
+    "batchnorm": false
+}

@@ -1,0 +1,51 @@
+defaults:
+  - jetclass_base/domain_shift@train_set
+  - jetclass_base/domain_shift@val_set
+  - jetclass_base/domain_shift@test_set
+
+_target_: src.datamodules.hdf_streamer.StreamModule
+
+name: BigBelloNominal_vs_PSmurr2_smeared
+
+train_set:
+  paths: [
+    /home/users/a/algren/scratch/latn_calib/nominal_combined.h5,
+    /home/users/a/algren/scratch/latn_calib/tests/12_12_2024_murr2/QCD_renamedmurr2_0.h5,
+    # /home/users/a/algren/scratch/latn_calib/PSmurr2_smeared_combined.h5,
+        ]
+  n_jets: 160_000
+  # n_jets: 1_600_000
+  idx_shift: 0
+
+val_set:
+  paths: [
+    /home/users/a/algren/scratch/latn_calib/nominal_combined.h5,
+    /home/users/a/algren/scratch/latn_calib/tests/12_12_2024_murr2/QCD_renamedmurr2_0.h5,
+    # /home/users/a/algren/scratch/latn_calib/PSmurr2_smeared_combined.h5,
+        ]
+  n_jets: 40_000
+  idx_shift: 160_000
+
+test_set:
+  paths: [
+    /home/users/a/algren/scratch/latn_calib/nominal_combined.h5,
+    /home/users/a/algren/scratch/latn_calib/tests/12_12_2024_murr2/QCD_renamedmurr2_0.h5,
+    # /home/users/a/algren/scratch/latn_calib/PSmurr2_smeared_combined.h5,
+        ]
+  n_jets: 40_000
+  idx_shift: 160_000
+
+batch_size: 1000
+num_workers: 4 # Speed testing show that 3 workers is enough even with augs
+
+transforms:
+  _target_: src.datamodules.preprocessing.batch_preprocess
+  _partial_: true
+  fn:
+  - _target_: joblib.load
+    filename: ${paths.root_dir}/resources/preprocessor_all.joblib
+  scalar_fn:
+    _target_: joblib.load
+    filename: ${paths.root_dir}/resources/jet_quant.joblib
+
+  inpt_name: "x"

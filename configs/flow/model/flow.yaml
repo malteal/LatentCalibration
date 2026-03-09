@@ -1,0 +1,20 @@
+_target_: run.train_flow.Flow
+data_dims: 16
+
+flow_cfg: 
+  input_dim: 16
+  n_couplings: 4
+  spline_kwargs:
+    num_bins: 12
+    tail_bound: 5.0
+    num_blocks: 2
+    num_hidden_channels: 128
+  
+train_config:
+  lr: 1e-4
+  sch_config: 
+    _target_: torch.optim.lr_scheduler.CosineAnnealingLR
+    _partial_: true
+    eta_min: 1e-8
+    T_max: ${trainer.max_steps}
+  # epochs: ${trainer.max_epochs}

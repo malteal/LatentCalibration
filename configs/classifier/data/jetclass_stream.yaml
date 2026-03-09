@@ -1,0 +1,35 @@
+defaults:
+  - jetclass_base/stream@train_set
+  - jetclass_base/stream@val_set
+  - jetclass_base/stream@test_set
+
+_target_: src.datamodules.hdf_streamer.StreamModule
+
+name: jetclass
+
+train_set:
+  path: ${paths.data_dir}/JetClassH5_full_csts/train_100M_*
+  n_jets: 10_000_000
+
+val_set:
+  path: ${paths.data_dir}/JetClassH5_full_csts/val_5M_combined.h5
+  n_jets: 500_000
+
+test_set:
+  path: ${paths.data_dir}/JetClassH5_full_csts/test_20M_combined.h5
+  n_jets: 500_000
+
+batch_size: 1000
+num_workers: 4 # Speed testing show that 3 workers is enough even with augs
+
+transforms:
+  _target_: src.datamodules.preprocessing.batch_preprocess
+  _partial_: true
+  fn:
+  - _target_: joblib.load
+    filename: ${paths.root_dir}/resources/cst_quant.joblib
+  scalar_fn:
+    _target_: joblib.load
+    filename: ${paths.root_dir}/resources/jet_quant.joblib
+
+  inpt_name: "x"

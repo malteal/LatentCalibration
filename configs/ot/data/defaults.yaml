@@ -1,0 +1,46 @@
+# data MC
+
+defaults:
+  - _self_
+
+_target_: otcalib.otcalib.torch.datamodule.OTDataModule
+
+dataname: JetClass
+name: MPM_input_10_labels
+
+transportnames: null
+condnames: []
+pca_bool: False
+
+source_sample:
+  _target_: src.datamodule.prepare_for_OTDataModule
+  _partial_: True
+  data:
+    - _target_: tools.tools.misc.load_h5
+      _partial_: True
+      path: /srv/beegfs/scratch/groups/rodem/latn_calib/latn_calib_clf/latn_calib_clf_jetclass_2024_12_11_11_13_09_170553/predictions/BigBelloNominal/train_combined.h5
+    - _target_: tools.tools.misc.load_h5
+      _partial_: True
+      path: /srv/beegfs/scratch/groups/rodem/latn_calib/latn_calib_clf/latn_calib_clf_jetclass_2024_12_11_11_13_09_170553/predictions/BigBelloNominal/valid_combined.h5
+
+target_sample:
+  _target_: ${..source_sample._target_}
+  _partial_: ${..source_sample._partial_}
+  # norm_bool: True
+
+  data:
+    - _target_: tools.tools.misc.load_h5
+      _partial_: True
+      path: /srv/beegfs/scratch/groups/rodem/latn_calib/latn_calib_clf/latn_calib_clf_jetclass_2024_12_11_11_13_09_170553/predictions/PSmurr2_smeared/train_combined.h5
+    - _target_: tools.tools.misc.load_h5
+      _partial_: True
+      path: /srv/beegfs/scratch/groups/rodem/latn_calib/latn_calib_clf/latn_calib_clf_jetclass_2024_12_11_11_13_09_170553/predictions/PSmurr2_smeared/valid_combined.h5
+
+valid_size: 0.2
+maxevents: null
+dataloader_kwargs:
+  batch_size: 1024
+  shuffle: True
+  drop_last: True
+  num_workers: 2
+  pin_memory: True

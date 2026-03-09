@@ -1,0 +1,12 @@
+# @package _global_
+
+defaults:
+  - _self_
+  # - gaussian
+  - bb_16_latn
+  # - bb_128_latn
+  # - bb_512_latn
+  # - bb_128_only_model
+
+
+

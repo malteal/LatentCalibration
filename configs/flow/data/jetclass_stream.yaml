@@ -1,0 +1,35 @@
+defaults:
+  - jetclass_base/stream@train_set
+  - jetclass_base/stream@val_set
+  - jetclass_base/stream@test_set
+
+_target_: src.datamodules.hdf_streamer.StreamModule
+
+name: jetclass
+
+train_set:
+  path: /srv/beegfs/scratch/groups/rodem/latn_calib/latn_calib_clf/latn_calib_clf_jetclass_2025_02_03_17_22_09_461014/predictions/PSmurr2_smeared/train_combined.h5
+  n_jets: null
+
+val_set:
+  path: /srv/beegfs/scratch/groups/rodem/latn_calib/latn_calib_clf/latn_calib_clf_jetclass_2025_02_03_17_22_09_461014/predictions/PSmurr2_smeared/valid_combined.h5
+  n_jets: 100_000
+
+test_set:
+  path: /srv/beegfs/scratch/groups/rodem/latn_calib/latn_calib_clf/latn_calib_clf_jetclass_2025_02_03_17_22_09_461014/predictions/PSmurr2_smeared/valid_combined.h5
+  n_jets: 100_000
+
+batch_size: 1000
+num_workers: 4 # Speed testing show that 3 workers is enough even with augs
+
+# transforms:
+#   _target_: src.datamodules.preprocessing.batch_preprocess
+#   _partial_: true
+#   fn:
+#   - _target_: joblib.load
+#     filename: ${paths.root_dir}/resources/cst_quant.joblib
+#   scalar_fn:
+#     _target_: joblib.load
+#     filename: ${paths.root_dir}/resources/jet_quant.joblib
+
+#   inpt_name: "x"

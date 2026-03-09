@@ -1,0 +1,55 @@
+# @package _global_
+
+_target_: run.predict_ot.PredictionHandler
+
+glob_path: /srv/beegfs/scratch/groups/rodem/latn_calib/calibrations/
+glob_samples: /srv/beegfs/scratch/groups/rodem/latn_calib/latn_calib_clf/
+
+# model_path:  ${glob_path}/JetClass/bb_latn_16_n_icnn_long_w_norm
+# model_path:  ${glob_path}/JetClass/bb_latn_128_n_icnn_long_w_norm
+
+# new high stat
+# model_path:  ${glob_path}/JetClass/bb_latn_16_n_icnn_long_high_stats
+# model_path:  ${glob_path}/JetClass/bb_latn_16_icnn_long_high_stats
+
+# new classifier
+# model_path:  ${glob_path}/JetClass/bb_latn_16_icnn_new_clf
+# model_path:  ${glob_path}/JetClass/bb_latn_16_icnn_huge_w_sigmoid_up_down_lr
+# model_path:  ${glob_path}/JetClass/bb_latn_16_n_icnn_quantile_trans
+# model_path:  ${glob_path}/JetClass/bb_latn_16_icnn_large
+
+# model_path:  ${glob_path}/JetClass/bb_latn_16_n_icnn
+
+# new classifier with flow
+# model_path:  ${glob_path}/JetClass/bb_latn_16_flow_n_icnn
+model_path:  ${glob_path}/JetClass/bb_latn_128_n_icnn_2
+  
+# save_sample_path: /srv/beegfs/scratch/groups/rodem/latn_calib/latn_calib_clf/latn_calib_clf_jetclass_2025_02_03_17_22_09_461014
+
+# # 128 only classifier  
+# model_path:  ${glob_path}/JetClass/bb_128_only_modelicnn_large_copy
+# save_sample_path: /srv/beegfs/scratch/groups/rodem/latn_calib/latn_calib_clf/latn_calib_clf_jetclass_2025_01_31_07_52_34_378267
+
+# # gaussian transport
+# model_path:  ${glob_path}/gaussian/16_gaussian/
+
+sample_name: source
+bkg_scaler_str: all # all, only_signal or rm_over_pred 
+force_prediction: True
+force_new_sample: False
+maxevents: 1_000_000
+index_to_load: -1 #-300
+allow_prediction: True
+
+norm_func:
+  _target_: src.datamodule.inverse_norm
+  _partial_: true
+
+  # # flow 
+  # _target_: src.datamodule.flow_norm
+  # _partial_: true
+  # to_base: False
+  # model_path: /srv/beegfs/scratch/groups/rodem/latn_calib/latn_calib_clf/flow_test_jetclass_2025_02_23_09_59_06_974389
+
+
+

@@ -1,0 +1,20 @@
+_target_: otcalib.otcalib.torch.PICNN.PICNN
+_partial_: True
+# cvx_dim: 2
+# noncvx_dim: 0
+cvx_layersize: 2048
+noncvx_layersize: 0
+n_layers: 2
+cvx_act: softplus_zeroed # softplus_zeroed celu
+# noncvx_act: softplus_zeroed
+act_params: null
+act_enforce_cvx: softplus
+act_weight_zz: softplus
+correction_trainable: True
+sym_act: True
+device: ${device}
+use_norm: False
+logit: False
+aug_icnn: False
+g_corr: softplus
+# g_corr: sigmoid

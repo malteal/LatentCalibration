@@ -1,0 +1,17 @@
+
+picnn_cfg:
+  noncvx_dim: 1
+  cvx_dim: 3
+  convex_layersizes: 128
+  nonconvex_layersizes: 8
+  n_layers: 6
+  convex_activation: softplus_zeroed
+  nonconvex_activation: softplus_zeroed
+  normalization: false
+  activation_params: null
+  act_enforce_cvx: softplus
+  act_weight_zz: softplus
+  first_act_sym: false
+  noncvx_norm: standard_first
+  cvx_norm: "no"
+  correction_trainable: true

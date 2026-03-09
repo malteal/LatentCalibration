@@ -1,0 +1,8 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - override /data: domain_shift_stream.yaml
+
+model:
+  output_dims: 1

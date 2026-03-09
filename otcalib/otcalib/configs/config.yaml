@@ -1,0 +1,4 @@
+defaults:
+  - _self_
+  - train_cfg: train_cfg
+  - picnn_cfg: picnn_cfg

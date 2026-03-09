@@ -1,0 +1,11 @@
+{   "device" : "cpu",
+    "lr_f" : 1e-4,
+    "lr_g" : 1e-4,
+    "f_lambda" : 1e-3,
+    "g_lambda" : 1e-3,
+    "g_per_f" : 1,
+    "f_per_g" : 1,
+    "grad_clip" : {"f": 10, "g": 10},
+    "grad_norm" : {"f": 10, "g": 0},
+    "burn_epochs" : 5
+}

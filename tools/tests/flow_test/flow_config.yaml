@@ -1,0 +1,6 @@
+ctxt_dim: 2
+rqs_kwargs:
+  num_bins: 10
+  tail_bound: 5
+  tails: linear
+xz_dim: 2

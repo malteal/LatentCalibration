@@ -1,0 +1,60 @@
+_target_: src.pc_classifier.PCClassifier
+
+input_dims: 15
+output_dims: 10
+
+train_config:
+  opt_cfg:
+    lr: 0.0001 # 0.0005
+    weight_decay: 0.01
+
+  lr_scheduler: 
+    sch_type: "warmup_to_constant"
+    attr:
+      num_steps: 10_000
+
+pc_classifier:
+  _target_: tools.tools.transformers.transformer.ClassEmbedding
+  _partial_: true
+
+  # cls_dim_in: 3
+  d_model: 512
+  cls_dim_out: 512
+
+  pooling: null
+
+  # also used in embedding_network
+  dense_cfg:
+    init_norm: True
+    norm: True
+    act_str: glu
+    n_layers: 0
+    nfactor: 2
+    hid_features: null
+    dropout: 0.1
+
+  encoder:
+    _target_: tools.tools.transformers.transformer.TransformerEncoder
+    _partial_: true
+    dense_cfg: ${..dense_cfg}
+    num_layers: 4
+
+    n_registers: 1
+    mha_config: 
+      attn_heads: 8
+    ctxt_dim: 0
+    topk: null #50
+    out_norm: False
+
+classifier:
+  _target_: src.pc_classifier.ClassifierHead
+  _partial_: true
+
+  input_dims: ${model.pc_classifier.cls_dim_out}
+  output_dims: ${model.output_dims}
+
+  hidden_dims: [256,128,64,32,16]
+  # hidden_dims: [128,128,128,128]
+
+  act_func: gelu
+

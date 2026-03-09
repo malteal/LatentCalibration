@@ -1,0 +1,25 @@
+
+train_cfg:
+  optimizer_args_f:
+    name: adamw
+    args:
+      betas: [0.0, 0.9]
+      lr: 0.0001
+  optimizer_args_g:
+    name: adamw
+    args:
+      betas: [0.0, 0.9]
+      lr: 0.0001
+  learning_rate_scheduler: false
+  f_per_g: 4
+  g_per_f: 8
+  grad_clip:
+    f: 5
+    g: 5
+  epoch_size: 512
+  nepochs: 500
+  reverse_ratio: 1
+  batchsize: 1024
+  outputname: null
+  verbose: false
+  burn_in: 50

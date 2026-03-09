@@ -1,0 +1,41 @@
+# @package _global_
+
+defaults:
+  - _self_
+  # - huge_network
+  # - large_network
+  # - reload_model
+eval:
+  plot_figures: False
+
+data:
+  maxevents: 500_000
+  valid_maxevents: 50_000
+  name: bb_latn_512_${model_name}
+  source_sample:
+    data:
+      - _target_: tools.tools.misc.load_h5
+        _partial_: True
+        path: /srv/beegfs/scratch/groups/rodem/latn_calib/latn_calib_clf/latn_calib_clf_jetclass_2024_12_11_11_13_09_170553/predictions/BigBelloNominal/train_combined.h5
+        keys: ['latn_512']
+
+      - _target_: tools.tools.misc.load_h5
+        _partial_: True
+        path: /srv/beegfs/scratch/groups/rodem/latn_calib/latn_calib_clf/latn_calib_clf_jetclass_2024_12_11_11_13_09_170553/predictions/BigBelloNominal/valid_combined.h5
+        keys: ['latn_512']
+
+    norm_path: /srv/beegfs/scratch/groups/rodem/latn_calib/latn_calib_clf/latn_calib_clf_jetclass_2024_12_11_11_13_09_170553/predictions/PSmurr2_smeared/scaler_latn_512.pkl
+
+  target_sample:
+    data:
+      - _target_: tools.tools.misc.load_h5
+        _partial_: True
+        path: /srv/beegfs/scratch/groups/rodem/latn_calib/latn_calib_clf/latn_calib_clf_jetclass_2024_12_11_11_13_09_170553/predictions/PSmurr2_smeared/train_combined.h5
+        keys: ['latn_512']
+
+      - _target_: tools.tools.misc.load_h5
+        _partial_: True
+        path: /srv/beegfs/scratch/groups/rodem/latn_calib/latn_calib_clf/latn_calib_clf_jetclass_2024_12_11_11_13_09_170553/predictions/PSmurr2_smeared/valid_combined.h5
+        keys: ['latn_512']
+
+    norm_path: /srv/beegfs/scratch/groups/rodem/latn_calib/latn_calib_clf/latn_calib_clf_jetclass_2024_12_11_11_13_09_170553/predictions/PSmurr2_smeared/scaler_latn_512.pkl

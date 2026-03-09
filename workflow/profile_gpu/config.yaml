@@ -1,0 +1,20 @@
+verbose: true
+printshellcmds: true
+jobs: 200 # Maximum number of jobs to run in parallel
+
+executor: slurm
+default-resources:
+  slurm_account: golling
+  slurm_partition: shared-gpu,private-dpnc-gpu
+  runtime: 600 # minutes
+  mem_mb: 32000
+  threads: 4
+
+sdm: apptainer
+apptainer-args: >- # multi-line string
+  --nv
+  --bind /srv,/home
+
+# --env PYTHONPATH=.
+# --cleanenv
+# --env WANDB_API_KEY=$WANDB_API_KEY

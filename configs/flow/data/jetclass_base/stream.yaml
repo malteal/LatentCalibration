@@ -1,0 +1,10 @@
+_target_: src.datamodules.hdf_streamer.LatnHDFStream
+_partial_: True
+n_classes: 10
+key: latn_16
+# features:
+# - [csts, f, [[128], [3]]]
+# - [mask, bool, [128]]
+# - [csts_id, l, [128]] #jet_dict.pop in preprocesssing
+# - [labels, l, null]
+# - ["jets", "f", null]

@@ -1,0 +1,3 @@
+DebugLevel: INFO
+TFDebugLevel: 1
+MPLPlottingBackend: Agg

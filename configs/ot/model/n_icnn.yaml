@@ -1,0 +1,9 @@
+
+defaults:
+  - _self_
+  - .@config: icnn.yaml
+
+_target_: otcalib.otcalib.torch.PICNN.nICNN
+_partial_: true
+
+n_layers: 4

@@ -1,0 +1,15 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - override /data: bb_nominal.yaml
+
+model:
+  output_dims: 3
+
+paths:
+  name: ${network_name}_${data.name}_${now:%Y_%m_%d}_${now:%H_%M_%S_%f}_bb_nominal
+  data_dir: /home/users/a/algren/scratch/latn_calib/
+
+trainer:
+  val_check_interval: 400

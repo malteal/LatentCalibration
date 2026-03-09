@@ -1,0 +1,62 @@
+# @package _global_
+defaults:
+  - _self_
+
+glob_path: /srv/beegfs/scratch/groups/rodem/latn_calib/calibrations/
+
+type_to_eval: JetClass #recoil_5TeV #ttbar
+name_to_eval: nominal
+evaluation_sample: source # Flow MC Flow_uniform original
+bkg_scaler_str: all # rm_over_pred all only_signal
+save_figures: True
+
+paths:
+  JetClass:  
+    # nominal:  ${glob_path}/JetClass/bb_latn_16_n_icnn_long_w_norm
+    # nominal:  ${glob_path}/JetClass/bb_latn_128_n_  icnn_long_w_norm
+    
+    # new high stat
+    # nominal:  ${glob_path}/JetClass/bb_latn_16_n_icnn_long_high_stats
+    # nominal:  ${glob_path}/JetClass/bb_latn_16_icnn_long_high_stats
+    # nominal:  ${glob_path}/JetClass/bb_latn_16_icnn_new_clf
+    # nominal:  ${glob_path}/JetClass/bb_latn_16_n_icnn
+    # nominal:  ${glob_path}/JetClass/bb_latn_16_icnn_huge_w_sigmoid_up_down_lr
+    # nominal:  ${glob_path}/JetClass/bb_latn_16_n_icnn_quantile_trans
+    # nominal:  ${glob_path}/JetClass/bb_latn_16_icnn_large
+
+    # nominal:  ${glob_path}/JetClass/bb_latn_16_flow_n_icnn
+    # nominal:  ${glob_path}/JetClass/bb_latn_128_n_icnn_2
+
+    # # gaussian transport
+    gauss:  ${glob_path}/gaussian/16_gaussian/
+
+    # only 128 classifier
+    nominal:  ${glob_path}/JetClass/bb_128_only_model_n_icnn
+    
+list_to_run_over:
+  latn: 
+    xlabels: ${.transport_names}
+    transport_names: [latn_15]
+    # conds_names: ["weights"] # dummy name
+
+# integral_conds_name: "weights"
+
+# conds bins
+# weights: [0, 100]
+# run_clf_layers: null
+# run_clf_layers: [8,2] # 16d for 128
+run_clf_layers: 8 # 10d for 128 
+# run_clf_layers: 2 # 10d for 16
+
+# which plots to make
+discriminators: False
+hist_kwargs: True # True or null
+
+discriminator:
+  n_epochs: 50
+  no_OT_calib: False
+  single_layer: false
+  use_calib: False
+  valid_size: 200_000
+  train_size: null
+

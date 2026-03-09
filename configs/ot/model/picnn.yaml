@@ -1,0 +1,13 @@
+_target_: otcalib.otcalib.torch.PICNN.PICNN
+_partial_: True
+cvx_layersize: 128
+noncvx_layersize: 8
+n_layers: 6
+cvx_act: softplus_zeroed
+noncvx_act: celu
+act_params: softplus
+act_enforce_cvx: softplus
+act_weight_zz: softplus
+correction_trainable: true
+device: ${device}
+use_norm: True

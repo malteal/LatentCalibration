@@ -1,0 +1,7 @@
+
+glob_model_path: /srv/beegfs/scratch/groups/rodem/latn_calib/calibrations/
+
+glob_data_path: /home/users/a/algren/scratch/latn_calib/
+
+save_path: ${path.glob_model_path}/${data.dataname}/${data.name}
+

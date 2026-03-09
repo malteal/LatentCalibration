@@ -1,0 +1,27 @@
+# probability of passing
+- conds_bins: [20,30,40,60,85,110,140,175,250,400]
+  only_sig: False
+  calculate_sf: False
+  fig_name: "VHcc_integral_pt"
+  plot_individual_points: False
+  plot_kwargs:
+    ratio_ylim: [0.8, 1.2]
+
+# calculate sf (probability of passing minus bkg)
+- conds_bins: [20,30,40,60,85,110,140,175,250,400]
+  only_sig: False
+  calculate_sf: True
+  plot_individual_points: ${plot_individual_points}
+  fig_name: "VHcc_sf_closure"
+  plot_kwargs:
+    ratio_ylim: [0.8, 1.2]
+
+# signal only
+- conds_bins: [20,30,40,60,85,110,140,175,250,400]
+  only_sig: True
+  calculate_sf: False
+  plot_individual_points: False
+  fig_name: "VHcc_only_sig"
+  plot_kwargs:
+    ratio_ylim: [0.9, 1.2]
+    ratio_ylabel: "Calib./Sim."

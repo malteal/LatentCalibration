@@ -1,0 +1,6 @@
+[submodule "tools"]
+	path = tools
+	url = ssh://git@gitlab.cern.ch:7999/malgren/tools.git
+[submodule "otcalib"]
+	path = otcalib
+	url = ssh://git@gitlab.cern.ch:7999/aml/optimal-transport/ot-framework.git

@@ -1,0 +1,15 @@
+# @package _global_
+
+defaults:
+  - bb_16_latn
+  - _self_
+
+data:
+  name: bb_latn_16_flow_${model_name}
+  source_sample:
+    norm_path: null
+    flow_path: /srv/beegfs/scratch/groups/rodem/latn_calib/latn_calib_clf/flow_test_jetclass_2025_02_23_09_59_06_974389
+
+  target_sample:
+    norm_path: null
+    flow_path: /srv/beegfs/scratch/groups/rodem/latn_calib/latn_calib_clf/flow_test_jetclass_2025_02_23_09_59_06_974389

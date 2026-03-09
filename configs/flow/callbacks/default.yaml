@@ -1,0 +1,23 @@
+checkpoint:
+  _target_: pytorch_lightning.callbacks.ModelCheckpoint
+  monitor: "valid/loss"
+  dirpath: ${paths.save_path}/checkpoints/
+  filename: best_steps_{step:03d}_loss_{valid/loss:.4f}_acc_{valid/accuracy:.4f}
+  save_top_k: 1
+  mode: "min"
+  save_last: True
+  save_weights_only: False
+  auto_insert_metric_name: False
+  verbose: True
+
+lr_monitor:
+  _target_: pytorch_lightning.callbacks.LearningRateMonitor
+  logging_interval: step
+
+model_summary:
+  _target_: pytorch_lightning.callbacks.RichModelSummary
+  max_depth: 2
+
+progress_bar:
+  _target_: pytorch_lightning.callbacks.RichProgressBar
+

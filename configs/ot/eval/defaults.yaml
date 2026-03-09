@@ -1,0 +1,14 @@
+# setting for running eval
+
+plot_figures: 50
+run_metrics: False
+save_model: True
+discriminator_str: Flow
+eval_performance_str: AUC
+save_all: True
+
+# transnames: ${data.transportnames}
+# condsnames: ${data.condnames}
+datatype: latn_distribution
+plot_mc_eval: False
+pca_bool: False

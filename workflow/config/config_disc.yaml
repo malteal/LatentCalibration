@@ -1,0 +1,6 @@
+#glob configs
+
+workdir: /home/users/a/algren/work/latn_calib/
+container_path: /home/users/a/algren/singularity_images/diffgae.sif
+
+global_path: /srv/beegfs/scratch/groups/rodem/latn_calib/calibrations/

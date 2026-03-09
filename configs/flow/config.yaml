@@ -1,0 +1,18 @@
+# @package _global_
+
+defaults:
+  - _self_
+
+  - trainer: default.yaml
+  - model: flow.yaml
+  - data: jetclass_stream.yaml 
+  - wandb: default.yaml
+  - hydra: default.yaml
+  - paths: default.yaml
+  - callbacks: default.yaml
+  # - experiment: defaults.yaml
+
+seed: 42 # For reproducibility
+project_name: latn_calib_clf # Determines output directory path and wandb project
+network_name: flow_test # Used for both saving and wandb
+device: cuda # device to use on

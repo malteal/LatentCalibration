@@ -1,0 +1,43 @@
+# data MC
+
+defaults:
+  - _self_
+
+data:
+  _target_: otcalib.otcalib.torch.datamodule.OTDataModule
+
+  dataname: gaussian
+  name: 16_gaussian
+
+  transportnames: null
+  condnames: []
+  pca_bool: False
+
+  source_sample:
+    _target_: src.datamodule.standard_multivariate_gaussian
+    _partial_: True
+    ndim: 16
+    n_samples: 5_000_000
+
+  target_sample:
+    _target_: src.datamodule.ndim_gaussian
+    _partial_: True
+    ndim: 16
+    n_samples: 5_000_000
+    save_path: ${path.save_path}
+
+  valid_size: 0.2
+  maxevents: null
+  dataloader_kwargs:
+    batch_size: 1024
+    shuffle: True
+    drop_last: True
+    num_workers: 2
+    pin_memory: True
+
+eval:
+  plot_figures: 1
+
+train:
+  epoch_size: 512
+
