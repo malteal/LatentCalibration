@@ -1,4 +1,4 @@
-'evaluate the classifier performance'
+'evaluate the flow performance'
 import pyrootutils
 
 root = pyrootutils.setup_root(search_from=__file__, pythonpath=True)
@@ -28,8 +28,8 @@ if __name__ == "__main__":
     
     # load data
     val_data_path = Path(config.data.val_set.path)
-    # replace str in Path
-    out_domain_path = Path(config.data.val_set.path.replace('PSmurr2_smeared', 'BigBelloNominal'))
+    # load an out-of-domain dataset (configured as val_set with different path)
+    out_domain_path = Path(config.data.val_set.path.replace('source_domain', 'target_domain'))
     val_data = misc.load_h5(val_data_path)[key]
     out_domain_val = misc.load_h5(out_domain_path)[key]
 
@@ -37,14 +37,11 @@ if __name__ == "__main__":
     gauss_val_data = flow_norm(val_data[:maxevents], model_path)
     gauss_out_domain = flow_norm(out_domain_val[:maxevents], model_path)
 
-    # gauss_val_data_back = flow_norm(model_path, gauss_val_data, to_base=False)
-    # gauss_out_domain_back = flow_norm(model_path, gauss_out_domain, to_base=False)
-    
     fig, ax = plt.subplots(2, gauss_val_data.shape[1], 
                            figsize=(gauss_val_data.shape[1]*8,8),
                            sharey="row")
-    dist_styles=[{'color':'b', 'label':'PSmurr2_smeared'},
-                {'color':'r', 'label':'BigBelloNominal'}]
+    dist_styles=[{'color':'b', 'label':'Source domain'},
+                {'color':'r', 'label':'Target domain'}]
 
     for i in range(gauss_val_data.shape[1]):
         plot.plot_hist(

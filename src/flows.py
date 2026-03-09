@@ -42,8 +42,8 @@ def train_template_generator(
     ----------
     config : dict
         config dict
-    label_name : str
-        ftag_sig or ftag_bkg
+    data_name : str
+        name of the data sample to train on
     save_path : str, optional
         where to save it, by default None
     old_model : str, optional
@@ -313,11 +313,4 @@ def train_template_generator(
         f"{outdir}/figures/1d_marginals/epoch_nr_high_stat.png",
         close_fig=True,
     )
-    if "ftag" in config['data']:
-        fig = plotting.plot_dl1r(target_names)
-        save_fig(
-            fig,
-            f"{outdir}/figures/dl1r/dl1r_epoch_nr_high_stat.png",
-            close_fig=True,
-        )
     return outdir, np.max(classifier.loss_data["valid_auc"])

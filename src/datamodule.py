@@ -24,14 +24,12 @@ except:
     ort = None
 from zipfile import BadZipFile
 
-# ot-framwork imports
-# from energyflow.utils.data_utils import _pad_events_axis1
+# ot-framework imports
 from src.pc_classifier import load_lightning_module
 from src.utils import jet_class_labels
 try:
     from run.train_flow import load_flow_from_path
 except ImportError:
-    # not normflows
     pass
 
 # external imports
@@ -324,8 +322,6 @@ def load_model_and_config(model_path: str, layers_removed: int = None):
     config_path = Path(model_path) / ".hydra" / "config.yaml"
     data_config = misc.load_yaml(config_path).data
     data_config.val_set.n_jets = None
-    data_config.transforms.fn[0].filename = '/home/users/a/algren/work/latn_calib/resources/cst_quant.joblib'
-    data_config.transforms.scalar_fn.filename = '/home/users/a/algren/work/latn_calib/resources/jet_quant.joblib'
 
     return model, data_config
 

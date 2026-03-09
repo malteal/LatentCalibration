@@ -4,29 +4,14 @@ defaults:
 
 glob_path: /srv/beegfs/scratch/groups/rodem/latn_calib/calibrations/
 
-type_to_eval: JetClass #recoil_5TeV #ttbar
+type_to_eval: JetClass 
 name_to_eval: nominal
-evaluation_sample: source # Flow MC Flow_uniform original
-bkg_scaler_str: all # rm_over_pred all only_signal
+evaluation_sample: source 
+bkg_scaler_str: all
 save_figures: True
 
 paths:
   JetClass:  
-    # nominal:  ${glob_path}/JetClass/bb_latn_16_n_icnn_long_w_norm
-    # nominal:  ${glob_path}/JetClass/bb_latn_128_n_  icnn_long_w_norm
-    
-    # new high stat
-    # nominal:  ${glob_path}/JetClass/bb_latn_16_n_icnn_long_high_stats
-    # nominal:  ${glob_path}/JetClass/bb_latn_16_icnn_long_high_stats
-    # nominal:  ${glob_path}/JetClass/bb_latn_16_icnn_new_clf
-    # nominal:  ${glob_path}/JetClass/bb_latn_16_n_icnn
-    # nominal:  ${glob_path}/JetClass/bb_latn_16_icnn_huge_w_sigmoid_up_down_lr
-    # nominal:  ${glob_path}/JetClass/bb_latn_16_n_icnn_quantile_trans
-    # nominal:  ${glob_path}/JetClass/bb_latn_16_icnn_large
-
-    # nominal:  ${glob_path}/JetClass/bb_latn_16_flow_n_icnn
-    # nominal:  ${glob_path}/JetClass/bb_latn_128_n_icnn_2
-
     # # gaussian transport
     gauss:  ${glob_path}/gaussian/16_gaussian/
 

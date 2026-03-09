@@ -1,4 +1,4 @@
-"evaluate ot ftag calibration"
+"evaluate OT calibration"
 import pyrootutils
 
 
@@ -82,9 +82,7 @@ if __name__ == '__main__':
     plotting = unc.EstimateUncertainty(data,path="",
                                 evaluation_sample=gen_name.split("_")[0],
                                 save=config.save_figures,
-                                b_jet_calib="ttbar" in selection,
                                 bkg_scaler_str = config.bkg_scaler_str,
-                                ATLAS_style=False,
                                 )
     
     ## change names of distributions

@@ -16,24 +16,13 @@ split_cfg:
 get_latn:
   _target_: src.datamodule.get_latent_of_datasets
   # 512,256,128,64,32,16,10
-  # model_path: ${glob_model_path}/latn_calib_clf_jetclass_2024_12_11_11_13_09_170553
   model_path: ${glob_model_path}/latn_calib_clf_jetclass_2025_02_03_17_22_09_461014
   layers_removed_lst: [-2, -8, -12]
-
-  # 512,128,128,128,128,10
-  # model_path: ${glob_model_path}/latn_calib_clf_jetclass_2025_01_31_07_52_34_378267
-  # layers_removed_lst: [-8, -9]
-
 
   # additioal setting
   n_batches: 100 #60_000
   layers_removed: null
 
   data_paths:
-      # # JetClass: null
-      # BigBelloNominal: ${glob_data_path}/nominal_combined.h5
-      # PSmurr2_smeared: ${glob_data_path}/PSmurr2_smeared_combined.h5
-      # # murr2: ${glob_data_path}/tests/12_12_2024_murr2/QCD_renamedmurr2_0.h5
-
       BigBelloNominal: ${glob_data_path}/nominal_low_and_high_combined.h5
       PSmurr2_smeared: ${glob_data_path}/PSmurr2_smeared_low_and_high_combined.h5

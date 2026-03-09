@@ -18,7 +18,7 @@ def get_args():
     parser.add_argument(
         "--data_path",
         type=str,
-        default="/home/users/a/algren/scratch/latn_calib/",
+        default="/path/to/data/",
         help="The path to the JetClass files",
     )
 

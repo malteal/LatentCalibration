@@ -1,12 +1,9 @@
 "functions for uncertainty plotting"
-"evaluate ot ftag calibration"
 from copy import deepcopy
-from tkinter import font
 import pyrootutils
 
 root = pyrootutils.setup_root(search_from=__file__, pythonpath=True)
 
-from asyncore import loop
 import json
 import sys
 import os
@@ -20,13 +17,11 @@ from tqdm import tqdm
 
 import numpy as np
 import matplotlib.pyplot as plt
-import torch as T
 import pandas as pd
 
 from tools.tools import misc
 from tools.tools.visualization import general_plotting as plot
-import tools.tools.visualization.plot_utils as plot_utils 
-import tools.tools.visualization.atlas_utils as atlas_utils
+import tools.tools.visualization.plot_utils as plot_utils
 
 from otcalib.otcalib.utils import plotutils
 import src.eval_utils as eval_utils
@@ -102,7 +97,6 @@ class EstimateUncertainty:
         self.systematic_sigma={}
         self.activate_weights = False
         self.bkg_scaler_str = kwargs.get('bkg_scaler_str', None)
-        self.ATLAS_style = kwargs.get('ATLAS_style', True)
 
         # define names and labels
         (self.style_source,
@@ -967,13 +961,7 @@ class EstimateUncertainty:
         if kwargs.get("yscale", "log")=="log":
             ax.set_yscale("log")
         
-        if self.integral_conds_name is not None:
-            ATLAS_kwargs = {"eta": pt_lst} if "eta" in self.integral_conds_name else {"pt": pt_lst}
-
-        if self.ATLAS_style:
-            atlas_utils.ATLAS_setup(ax=ax, **ATLAS_kwargs)
-        else:
-            ax.legend(**legend_kwargs)
+        ax.legend(**legend_kwargs)
         
         ylim_hist = kwargs.get("ylim_hist") 
         if ylim_hist is not None:

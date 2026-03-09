@@ -35,7 +35,6 @@ from otcalib.otcalib.utils.misc as misc
 # separate imports
 from tools.discriminator import DenseNet
 import tools.flows as flows
-# from tools.visualization.atlas_utils import get_atlas_internal_str, get_atlas_legend, ATLAS_setup
 from tools.visualization import general_plotting as plot
 
 def evaluate_density(classifer: torch.nn.Module, valid_data: torch.Tensor, valid_labels: torch.Tensor, save_path: str, col_names: list=None,
@@ -136,7 +135,6 @@ def plot_density_ratio(data, sorted_conds, pred_prob, save_path, save_bool=False
         histtype="step",
         ls="dashed",
     )
-    # plt.legend(title=get_atlas_legend())
     plt.xlabel(xlabel)
     plt.ylabel("Normalised entries")
     plt.tight_layout()
@@ -153,7 +151,6 @@ def plot_density_ratio(data, sorted_conds, pred_prob, save_path, save_bool=False
         x_bins, sig_counts, xerr=xerr, yerr=yerr, label=r"Signal probability", color="blue"
     )
     plt.plot(sorted_conds, pred_prob, label=r"NN signal probability", color="red", zorder=10)
-    # plt.legend(title=get_atlas_legend(), frameon=False, loc="best")
     plt.xlim(plot_kwargs.get("range", None))
     plt.xlabel(xlabel)
     plt.ylabel("Probability")

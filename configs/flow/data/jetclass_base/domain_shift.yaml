@@ -1,3 +1,0 @@
-_target_: src.datamodules.hdf_streamer.DomainHDFStream
-_partial_: True
-n_classes: 1

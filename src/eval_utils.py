@@ -1,8 +1,6 @@
 # pylint: skip-file
 "utils for evaluate models"
-from asyncore import loop
 import json
-import sys
 import os
 
 from tqdm import tqdm
@@ -10,7 +8,6 @@ from tqdm import tqdm
 import numpy as np
 import torch
 
-# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src import utils
 
 from tools.tools import misc
@@ -53,8 +50,7 @@ def load_calibration_sample(model_path, data_size, **kwargs):
             "condnames": conds_var,
             "train_size": 1,
             "valid_size": data_size,
-            "sig_bkg_selection": ("" if "physics_Main" in
-                                    commandline_args["target_path"] else "sig"),
+            "sig_bkg_selection": "sig",
         }
         sample_args["maxevents"] = data_size
         # pt_bins = np.array([20, 30, 40, 60, 85, 110, 140, 175, 250, 600])
@@ -71,7 +67,7 @@ def load_calibration_sample(model_path, data_size, **kwargs):
         # commandline_args["source_path"] = "/home/users/a/algren/scratch/ftag-otcalib/MC_to_data_all"
         
         args["bkg_weighting"] = False
-        _, _, eval_data, _  = utils.load_ftag_data(
+        _, _, eval_data, _  = utils.load_data(
             sample_args=sample_args,
             source_path=commandline_args["source_path"],
             target_path=commandline_args["target_path"],
@@ -79,7 +75,7 @@ def load_calibration_sample(model_path, data_size, **kwargs):
             conds_var=conds_var,
             generator_path=kwargs.get("generator_path", commandline_args["generator_path"]),
             device=train_config["device"],
-            batchsize =batch_size,
+            batchsize=batch_size,
             cut_in_valid_size=False,
             valid_duplications=sample_args["maxevents"]//500_000 if sample_args["maxevents"] is not None else 1,
             number_of_events=None,
@@ -216,9 +212,7 @@ def run_calibration(paths:list, data_size, best_index=-1,
                         epoch=f"best_better_{best_index}",
                         outfolder=output_dir,
                         prefix=f"{name}_{best_index}",
-                        datatype="ftag",
                         correlation_bool=False,
-                        # **args,
                     )
 
 
